@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "integral-philosophy-core"
+version = "2.0.0"
+description = "Core content processing engine for academic publishing"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Philosophy Publishing Team", email = "team@integral-philosophy.org"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Text Processing :: General",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    "requests>=2.31.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "markdown>=3.4.0",
+    "pyyaml>=6.0",
+    "jinja2>=3.1.0",
+    "pillow>=10.0.0",
+]
+
+[project.optional-dependencies]
+web = [
+    "selenium>=4.15.0",
+    "playwright>=1.40.0",
+]
+tei = [
+    "pybtex>=0.24.0",
+    "python-markdown-math>=0.8",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+]
+all = [
+    "integral-philosophy-core[web,tei,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/dominicusin/integral-philosophy-core"
+Documentation = "https://integral-philosophy-core.readthedocs.io"
+Repository = "https://github.com/dominicusin/integral-philosophy-core.git"
+Issues = "https://github.com/dominicusin/integral-philosophy-core/issues"
+
+[project.scripts]
+integral-core = "integral_philosophy_core.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
